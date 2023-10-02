@@ -1,8 +1,10 @@
 # Music-Recommendation
 The Spotify Recommendation feature helps you to find a music you may enjoy. It provides details such as the name of the Song features Artist and Album, as well as the giving a reports.
 
+![webpage1](https://github.com/Shamimansari42/Spotify_Recommendation/assets/115481955/76fcd514-bff0-4a10-a173-74c649012342)
 
-![Screen 1](D:\temp\React\Projects\Spotify_music_recommendation)
+
+![Screen 1]
 
 # Run the project
 1. Dowload each file in your local machine.
