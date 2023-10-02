@@ -186,16 +186,16 @@ if selected_artist is not None and len(artists) > 0:
             for track in top_songs_result['tracks']:
                 with st.container():
                     col1, col2, col3, col4 = st.columns((4,4,2,2))
-                   # col11, col12 = st.columns((10,2))
+                    col11, col12 = st.columns((10,2))
                     col21, col22 = st.columns((11,1))
                     col31, col32 = st.columns((11,1))
                     col1.write(track['id'])
                     col2.write(track['name'])
-                    st.audio(track['preview_url'], format="audio/mp3")
-                    '''if track['preview_url'] is not None:
+
+                    if track['preview_url'] is not None:
                         col11.write(track['preview_url'])  
                         with col12:   
-                            st.audio(track['preview_url'], format="audio/mp3")  '''
+                            st.audio(track['preview_url'], format="audio/mp3")
                     with col3:
                         def feature_requested():
                             track_features  = sp.audio_features(track['id']) 
