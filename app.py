@@ -81,14 +81,32 @@ if selected_track is not None and len(tracks) > 0:
     if track_id is not None:
         image = songrecommendations.get_album_image(track_id)
         st.image(image)
-        track_choices = ['Song Features', 'Similar Songs Recommendation']
+        track_choices = ['Music player','Song Features', 'Similar Songs Recommendation']
         selected_track_choice = st.sidebar.selectbox('Please select track choice: ', track_choices)        
+        if selected_track_choice == 'Music player':
+            token = songrecommendations.get_token(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET)
+            similar_songs_json = songrecommendations.get_track_recommendations(track_id, token)
+            recommendation_list = similar_songs_json['tracks']
+            recommendation_list_df = pd.DataFrame(recommendation_list)
+            recommendation_list_df.dropna(subset=['preview_url'], inplace=True)
+
+            for idx in recommendation_list_df.index:
+                with st.container():
+                    col2, col3, = st.columns((8,2))
+                    col2.write(recommendation_list_df['name'][idx])
+                    col3.write(recommendation_list_df['duration_ms'][idx])
+                    st.audio(recommendation_list_df['preview_url'][idx], format="audio/mp3")
+                    
+
+
+        
         if selected_track_choice == 'Song Features':
             track_features  = sp.audio_features(track_id) 
             df = pd.DataFrame(track_features, index=[0])
             df_features = df.loc[: ,['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'speechiness', 'valence']]
             st.dataframe(df_features)
             polarplot.feature_plot(df_features)
+
         elif selected_track_choice == 'Similar Songs Recommendation':
             token = songrecommendations.get_token(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET)
             similar_songs_json = songrecommendations.get_track_recommendations(track_id, token)
