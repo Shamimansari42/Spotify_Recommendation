@@ -1,4 +1,4 @@
-# Movie-Recommendation
+# Music-Recommendation
 The Spotify Recommendation feature helps you to find a music you may enjoy. It provides details such as the name of the Song features Artist and Album, as well as the giving a reports.
 
 
