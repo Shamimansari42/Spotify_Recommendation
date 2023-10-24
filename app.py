@@ -219,5 +219,5 @@ if selected_artist is not None and len(artists) > 0:
                             with col31:
                                 songrecommendations.song_recommendation_vis(recommendation_df)
 
-                        similar_songs_state = st.button('Similar Songs', key=track['id'], on_click=similar_songs_requested)
+                        similar_songs_state = st.button('Similar Songs', key=track, on_click=similar_songs_requested)
                     st.write('----')
